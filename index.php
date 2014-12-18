@@ -1,12 +1,11 @@
 <?
-$method = $_SERVER['REQUEST_METHOD'];
 $agent = $_SERVER['HTTP_USER_AGENT'];
 
 $request = explode('/',urldecode(ltrim($_SERVER['REQUEST_URI'],'/')));
 $type = array_shift($request);
 
 
-if ($type === 'font') {
+if ($type === 'fonts') {
 	header('Content-Type: text/css; charset: utf-8');
 
 	# debug info - user agent data
@@ -29,13 +28,19 @@ if ($type === 'font') {
 	}
 	
 } else if ($type === 'svg') {
+	// svg requests
 	header('Content-Type: image/svg+xml');
-	echo 'svg';
+	
+	// TODO
+	
+	
 } else if ($type === 'files') {
 	// Direct file requests
 	include('/files/' . array_shift($request));
 } else {
-	echo 'none';
+	echo 'invalid request.';
+	// TODO: error page
+	# include('error_page.php');
 }
 
 
@@ -85,9 +90,13 @@ function parseFontRequest($fontStringArray) {
 				if ($styles[1] > 900) {
 					echo '/* Requested weight ' . $styles[1] . ' is too high, falling back to 900 */' . PHP_EOL;
 					$fontWeight = 900;
-				} else if ($styles[1] < 100) {
+				} else if ($styles[1] < 100 && $styles[1] > 0) {
 					echo '/* Requested weight ' . $styles[1] . ' is too low, falling back to 100 */' . PHP_EOL;
 					$fontWeight = 100;
+				} else if ($styles[1] == 0) {
+					// probably no weight given, default to 400
+					echo '/* No weight specified, falling back to 400 */' . PHP_EOL;
+					$fontWeight = 400;
 				} else {
 					// set font weight
 					$fontWeight = $styles[1];
