@@ -18,21 +18,52 @@ To make a certain font available, you include a css file in your document head. 
 https://static.example.com/fonts/Roboto
 ```
 
-Without parameters, the returned css will default to the _normal_-font-style and font-weight _400_, including only the required file type based on the clients user agent.
+Without parameters, the returned css will default to the _normal_-font-style and font-weight _400_, including only the required file type based on the clients user agent. For a current build of Google Chrome, the css would look like this:
+
+```
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Roboto"), local("Roboto"), url(https://static.example.com/files/fonts/Roboto/Roboto-normal.woff2) format("woff2");
+}
+```
+
 
 To get more styles or even fonts at once, alter the URL like this:
 ```
 https://static.example.com/fonts/Roboto|italic:600,normal:300&Open+Sans|normal:100
 ```
-
 This will include three @font-face - blocks, each with their respective file name.
+
+
 
 It even catches common errors and informs about it by inserting a css comment in the output:
 ```
 https://static.example.com/fonts/RObOtO|normal:120000&Source+Code+Pro|fancy
 ```
 
-This will resolve to font name Roboto, set its weight to 900 (maximum value by the specs), set the font-style for Source Code Pro to normal and add font-weight 400 to it. 
+This will resolve to font name Roboto, set its weight to 900 (maximum value by the specs), set the font-style for Source Code Pro to normal and add font-weight 400 to it:
+```
+/* Requested weight 120000 is too high, falling back to 900 */
+/* Requested style fancy not available, falling back to normal */
+/* No weight specified, falling back to 400 */
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 900;
+  src: local("Roboto"), local("Roboto"), url(http://static.9dev.de/files/fonts/Roboto/Roboto-normal.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: "Source Code Pro";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Source Code Pro"), local("SourceCodePro"), url(http://static.9dev.de/files/fonts/SourceCodePro/SourceCodePro-normal.woff2) format("woff2");
+}
+```
+
+
 
 ## Is it complete yet?
 Not by any measure. The configuration for what font styles to use, browsers to support, URLs to build etc etc. is still buried in the script. There should be a global config file. While this _can_ be used to only serve fonts, a snippet for svg files is already included, more to come.
