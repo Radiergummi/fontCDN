@@ -1,0 +1,11 @@
+# Allow files to be accessed from another domain
+Header add Access-Control-Allow-Origin "*"
+
+# Rewrite all requests to index.php
+<IfModule mod_rewrite.c>
+  RewriteEngine on
+  RewriteBase /
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.*)$ index.php?/$1 [L,QSA]
+</IfModule>
