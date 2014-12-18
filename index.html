@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>FontCDN by Radiergummi</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>FontCDN</h1>
+        <p>Serve webfonts from your own server! </p>
+
+        <p class="view"><a href="https://github.com/Radiergummi/fontCDN">View the Project on GitHub <small>Radiergummi/fontCDN</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/Radiergummi/fontCDN/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/Radiergummi/fontCDN/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/Radiergummi/fontCDN">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="fontcdn" class="anchor" href="#fontcdn" aria-hidden="true"><span class="octicon octicon-link"></span></a>fontCDN</h1>
+
+<p>Serve webfonts from your own server! 
+fontCDN is a simple solution to deliver web fonts written in php. </p>
+
+<h2>
+<a id="why-would-i-need-this" class="anchor" href="#why-would-i-need-this" aria-hidden="true"><span class="octicon octicon-link"></span></a>Why would I need this?</h2>
+
+<p>As a web developer, you most probably use non-system fonts from Google Fonts or Typekit. Now, while those are awesome and blazingly fast and all, sometimes you need a font just not hosted on any major CDN, so you host it on the domain yourself.  </p>
+
+<p>This drags your speed down quite a bit, depending on the amount of fonts and styles and file formats you need. Throw in images, svg and script files - websites can become pretty demanding.</p>
+
+<h2>
+<a id="so-what-does-it-do" class="anchor" href="#so-what-does-it-do" aria-hidden="true"><span class="octicon octicon-link"></span></a>So, what does it do?</h2>
+
+<p>fontCDN behaves a bit like Google Fonts:<br>
+To make a certain font available, you include a css file in your document head. The link is constructed from multiple parameters, like so:</p>
+
+<pre><code>https://static.example.com/fonts/Roboto
+</code></pre>
+
+<p>Without parameters, the returned css will default to the <em>normal</em>-font-style and font-weight <em>400</em>, including only the required file type based on the clients user agent.</p>
+
+<p>To get more styles or even fonts at once, alter the URL like this:</p>
+
+<pre><code>https://static.example.com/fonts/Roboto|italic:600,normal:300&amp;Open+Sans|normal:100
+</code></pre>
+
+<p>This will include three <a href="https://github.com/font-face" class="user-mention">@font-face</a> - blocks, each with their respective file name.</p>
+
+<p>It even catches common errors and informs about it by inserting a css comment in the output:</p>
+
+<pre><code>https://static.example.com/fonts/RObOtO|normal:120000&amp;Source+Code+Pro|fancy
+</code></pre>
+
+<p>This will resolve to font name Roboto, set its weight to 900 (maximum value by the specs), set the font-style for Source Code Pro to normal and add font-weight 400 to it. </p>
+
+<h2>
+<a id="is-it-complete-yet" class="anchor" href="#is-it-complete-yet" aria-hidden="true"><span class="octicon octicon-link"></span></a>Is it complete yet?</h2>
+
+<p>Not by any measure. The configuration for what font styles to use, browsers to support, URLs to build etc etc. is still buried in the script. There should be a global config file. While this <em>can</em> be used to only serve fonts, a snippet for svg files is already included, more to come.</p>
+
+<p>Participation would be gladly recieved! I am by no means a php professional (as you maybe are able to tell from looking at the code - it's pretty rough ATM).</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/Radiergummi">Radiergummi</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
