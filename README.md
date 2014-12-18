@@ -30,14 +30,23 @@ Without parameters, the returned css will default to the _normal_-font-style and
 ```
 
 
+
+***
+
+
+
 To get more styles or even fonts at once, alter the URL like this:
 ```
 https://static.example.com/fonts/Roboto|italic:600,normal:300&Open+Sans|normal:100
 ```
 This will include three @font-face - blocks, each with their respective file name.
-
-
-
+  
+  
+  
+***
+  
+  
+  
 It even catches common errors and informs about it by inserting a css comment in the output:
 ```
 https://static.example.com/fonts/RObOtO|normal:120000&Source+Code+Pro|fancy
