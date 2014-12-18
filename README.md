@@ -20,7 +20,7 @@ https://static.example.com/fonts/Roboto
 
 Without parameters, the returned css will default to the _normal_-font-style and font-weight _400_, including only the required file type based on the clients user agent. For a current build of Google Chrome, the css would look like this:
 
-```
+```css
 @font-face {
   font-family: "Roboto";
   font-style: normal;
@@ -44,7 +44,8 @@ https://static.example.com/fonts/RObOtO|normal:120000&Source+Code+Pro|fancy
 ```
 
 This will resolve to font name Roboto, set its weight to 900 (maximum value by the specs), set the font-style for Source Code Pro to normal and add font-weight 400 to it:
-```
+
+```css
 /* Requested weight 120000 is too high, falling back to 900 */
 /* Requested style fancy not available, falling back to normal */
 /* No weight specified, falling back to 400 */
