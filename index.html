@@ -50,7 +50,16 @@ To make a certain font available, you include a css file in your document head. 
 <pre><code>https://static.example.com/fonts/Roboto
 </code></pre>
 
-<p>Without parameters, the returned css will default to the <em>normal</em>-font-style and font-weight <em>400</em>, including only the required file type based on the clients user agent.</p>
+<p>Without parameters, the returned css will default to the <em>normal</em>-font-style and font-weight <em>400</em>, including only the required file type based on the clients user agent. For a current build of Google Chrome, the css would look like this:</p>
+
+<div class="highlight highlight-css"><pre><span class="pl-k">@font-face</span> {
+  <span class="pl-mp"><span class="pl-s3">font-family</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>Roboto<span class="pl-pds">"</span></span>;
+  <span class="pl-mp"><span class="pl-s3">font-style</span></span>: <span class="pl-sc">normal</span>;
+  <span class="pl-mp"><span class="pl-s3">font-weight</span></span>: <span class="pl-c1">400</span>;
+  <span class="pl-mp"><span class="pl-s3">src</span></span>: <span class="pl-s3">local</span>(<span class="pl-s1"><span class="pl-pds">"</span>Roboto<span class="pl-pds">"</span></span>), <span class="pl-s3">local</span>(<span class="pl-s1"><span class="pl-pds">"</span>Roboto<span class="pl-pds">"</span></span>), <span class="pl-s3">url</span>(<span class="pl-v">https://static.example.com/files/fonts/Roboto/Roboto-normal.woff2</span>) <span class="pl-s3">format</span>(<span class="pl-s1"><span class="pl-pds">"</span>woff2<span class="pl-pds">"</span></span>);
+}</pre></div>
+
+<hr>
 
 <p>To get more styles or even fonts at once, alter the URL like this:</p>
 
@@ -59,12 +68,31 @@ To make a certain font available, you include a css file in your document head. 
 
 <p>This will include three <a href="https://github.com/font-face" class="user-mention">@font-face</a> - blocks, each with their respective file name.</p>
 
+<hr>
+
 <p>It even catches common errors and informs about it by inserting a css comment in the output:</p>
 
 <pre><code>https://static.example.com/fonts/RObOtO|normal:120000&amp;Source+Code+Pro|fancy
 </code></pre>
 
-<p>This will resolve to font name Roboto, set its weight to 900 (maximum value by the specs), set the font-style for Source Code Pro to normal and add font-weight 400 to it. </p>
+<p>This will resolve to font name Roboto, set its weight to 900 (maximum value by the specs), set the font-style for Source Code Pro to normal and add font-weight 400 to it:</p>
+
+<div class="highlight highlight-css"><pre><span class="pl-c">/* Requested weight 120000 is too high, falling back to 900 */</span>
+<span class="pl-c">/* Requested style fancy not available, falling back to normal */</span>
+<span class="pl-c">/* No weight specified, falling back to 400 */</span>
+<span class="pl-k">@font-face</span> {
+  <span class="pl-mp"><span class="pl-s3">font-family</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>Roboto<span class="pl-pds">"</span></span>;
+  <span class="pl-mp"><span class="pl-s3">font-style</span></span>: <span class="pl-sc">normal</span>;
+  <span class="pl-mp"><span class="pl-s3">font-weight</span></span>: <span class="pl-c1">900</span>;
+  <span class="pl-mp"><span class="pl-s3">src</span></span>: <span class="pl-s3">local</span>(<span class="pl-s1"><span class="pl-pds">"</span>Roboto<span class="pl-pds">"</span></span>), <span class="pl-s3">local</span>(<span class="pl-s1"><span class="pl-pds">"</span>Roboto<span class="pl-pds">"</span></span>), <span class="pl-s3">url</span>(<span class="pl-v">http://static.9dev.de/files/fonts/Roboto/Roboto-normal.woff2</span>) <span class="pl-s3">format</span>(<span class="pl-s1"><span class="pl-pds">"</span>woff2<span class="pl-pds">"</span></span>);
+}
+
+<span class="pl-k">@font-face</span> {
+  <span class="pl-mp"><span class="pl-s3">font-family</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>Source Code Pro<span class="pl-pds">"</span></span>;
+  <span class="pl-mp"><span class="pl-s3">font-style</span></span>: <span class="pl-sc">normal</span>;
+  <span class="pl-mp"><span class="pl-s3">font-weight</span></span>: <span class="pl-c1">400</span>;
+  <span class="pl-mp"><span class="pl-s3">src</span></span>: <span class="pl-s3">local</span>(<span class="pl-s1"><span class="pl-pds">"</span>Source Code Pro<span class="pl-pds">"</span></span>), <span class="pl-s3">local</span>(<span class="pl-s1"><span class="pl-pds">"</span>SourceCodePro<span class="pl-pds">"</span></span>), <span class="pl-s3">url</span>(<span class="pl-v">http://static.9dev.de/files/fonts/SourceCodePro/SourceCodePro-normal.woff2</span>) <span class="pl-s3">format</span>(<span class="pl-s1"><span class="pl-pds">"</span>woff2<span class="pl-pds">"</span></span>);
+}</pre></div>
 
 <h2>
 <a id="is-it-complete-yet" class="anchor" href="#is-it-complete-yet" aria-hidden="true"><span class="octicon octicon-link"></span></a>Is it complete yet?</h2>
