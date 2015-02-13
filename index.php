@@ -1,4 +1,7 @@
 <?
+	
+require('config.php');
+	
 $agent = $_SERVER['HTTP_USER_AGENT'];
 
 $request = explode('/',urldecode(ltrim($_SERVER['REQUEST_URI'],'/')));
