@@ -17,7 +17,7 @@ if ($type === 'fonts') {
 	// read all given information from the URL given
 	$fonts = parseFontRequest(explode('&',array_shift($request)));
 
-	foreach($fonts as $font) {
+	foreach($fonts as $font){
 			echo '@font-face {'.PHP_EOL;
 			echo '  font-family: "'.$font['name'].'";'.PHP_EOL;
 			echo '  font-style: '.$font['style'].';'.PHP_EOL;
