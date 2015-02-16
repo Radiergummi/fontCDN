@@ -1,8 +1,63 @@
 <?
 	
-require('config.php');
+ 
+/**
+ * General purpose config class
+ *
+ */
+class Config {
 	
-$agent = $_SERVER['HTTP_USER_AGENT'];
+	/**
+	 * @var data
+	 * 
+	 * holds the configuration
+	 */
+	private $data = array();
+	
+	/**
+	 * Constructor
+	 * 
+	 * Populates the data array with the values injected at runtime
+	 *
+	 * @param array $data The values to store
+	 */
+	public function __construct($data) {
+		$this->data = $data;
+	}
+	
+	/**
+	 * gets a value from the config array
+	 *
+	 * @param string $key the config key in question
+	 * @param mixed $fallback (optional) a fallback value in case the config is empty
+	 * @return the value of $data[$key]
+	 */
+	public function get($key, $fallback = null) {
+		$value = $this->data[$key];
+		return (!empty($value) ? $value : $fallback);
+	}
+	
+	/**
+	 * sets a value in the config array
+	 * 
+	 * @param string $key the config key in question
+	 * @param mixed $value the value to set 
+	 * @return void;
+	 */
+	public function set($key, $value) {
+		$this->data[$key] = $value;
+	}
+}
+
+$config = new Config(require('config.php'));
+
+	
+	
+	
+	
+	
+	
+	$agent = $_SERVER['HTTP_USER_AGENT'];
 
 $request = explode('/',urldecode(ltrim($_SERVER['REQUEST_URI'],'/')));
 $type = array_shift($request);
