@@ -62,14 +62,14 @@ This will resolve to font name Roboto, set its weight to 900 (maximum value by t
   font-family: "Roboto";
   font-style: normal;
   font-weight: 900;
-  src: local("Roboto"), local("Roboto"), url(http://static.9dev.de/files/fonts/Roboto/Roboto-normal.woff2) format("woff2");
+  src: local("Roboto"), local("Roboto"), url(http://static.example.de/files/fonts/Roboto/Roboto-normal.woff2) format("woff2");
 }
 
 @font-face {
   font-family: "Source Code Pro";
   font-style: normal;
   font-weight: 400;
-  src: local("Source Code Pro"), local("SourceCodePro"), url(http://static.9dev.de/files/fonts/SourceCodePro/SourceCodePro-normal.woff2) format("woff2");
+  src: local("Source Code Pro"), local("SourceCodePro"), url(http://static.example.de/files/fonts/SourceCodePro/SourceCodePro-normal.woff2) format("woff2");
 }
 ```
 
