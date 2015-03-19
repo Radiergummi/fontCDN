@@ -22,7 +22,7 @@ class Config {
 	 * @param array $data The values to store
 	 */
 	public function __construct($data) {
-		$this->data = $data;
+		$this->data = json_decode($data, true);
 	}
 	
 	/**
@@ -33,8 +33,23 @@ class Config {
 	 * @return the value of $data[$key]
 	 */
 	public function get($key, $fallback = null) {
-		$value = $this->data[$key];
-		return (!empty($value) ? $value : $fallback);
+		$keys = explode('.', $key);
+		$values = $this->data;
+
+		if (count($keys) == 1) {
+			$value = $values[$keys[0]];
+			return (!empty($value) ? $value : $fallback);
+		} else {
+			// search the array using the dot character to access nested array values
+			foreach($keys as $key) {
+				// when a key is not found or we didnt get an array to search return a fallback value
+				if(! array_key_exists($key, $values)) {
+					return $fallback;
+				}
+				$values =& $values[$key];
+			}
+			return $values;
+		}
 	}
 	
 	/**
