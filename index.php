@@ -64,7 +64,7 @@ class Config {
 	}
 }
 
-$config = new Config(require('config.php'));
+$config = new Config(file_get_contents('config.json'));
 
 	
 	
