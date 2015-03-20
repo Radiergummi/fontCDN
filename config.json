@@ -1,0 +1,58 @@
+{
+  "browsers": {
+    "1": "Chrome",
+    "2": "Firefox",
+    "3": "Opera",
+    "4": "Safari",
+    "5": "MSIE",
+    "6": "Trident"
+  },
+  "fonts": {
+    "dummy": {
+      "styles": {
+        "thin": {
+          "formats": {
+            "ttf": "dummy-thin.ttf",
+            "woff": "dummy-thin.woff",
+            "woff2": "dummy-thin.woff2"
+          }
+        },
+        "regular": {
+          "formats": {
+            "ttf": "dummy-regular.ttf",
+            "woff": "dummy-regular.woff",
+            "woff2": "dummy-regular.woff2"
+          }
+        },
+        "italic": {
+          "formats": {
+            "ttf": "dummy-italic.ttf",
+            "woff": "dummy-italic.woff",
+            "woff2": "dummy-italic.woff2"
+          }
+        },
+        "semibold": {
+          "formats": {
+            "ttf": "dummy-semibold.ttf",
+            "woff": "dummy-semibold.woff",
+            "woff2": "dummy-semibold.woff2"
+          }
+        },
+        "bold": {
+          "formats": {
+            "ttf": "dummy-bold.ttf",
+            "woff": "dummy-bold.woff",
+            "woff2": "dummy-bold.woff2"
+          }
+        },
+        "black": {
+          "formats": {
+            "ttf": "dummy-black.ttf",
+            "woff": "dummy-black.woff",
+            "woff2": "dummy-black.woff2"
+          }
+        }
+      }
+    }
+  }
+}
