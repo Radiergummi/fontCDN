@@ -1,16 +1,19 @@
 <?
+define('URL', (isset($_SERVER['HTTPS']) ? "https" : "http") . '://' . $_SERVER['HTTP_HOST']);
 
+define('DS', DIRECTORY_SEPARATOR);
+define('PATH', dirname(__FILE__) . DS);
+define('SYS', PATH . 'system' . DS);
+define('EXT', '.php');
+
+require SYS . 'config' . EXT;
+
+// read config
 $config = new Config(file_get_contents('config.json'));
 
-	
-	
-	
-	
-	
-	
-	$agent = $_SERVER['HTTP_USER_AGENT'];
+$config->set('useragent', $_SERVER['HTTP_USER_AGENT']);
+$config->set('request', explode('/',urldecode(ltrim($_SERVER['REQUEST_URI'],'/'))));	
 
-$request = explode('/',urldecode(ltrim($_SERVER['REQUEST_URI'],'/')));
 $type = array_shift($request);
 
 
