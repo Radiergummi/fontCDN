@@ -1,11 +1,23 @@
 {
   "browsers": {
-    "1": "Chrome",
-    "2": "Firefox",
-    "3": "Opera",
-    "4": "Safari",
-    "5": "MSIE",
-    "6": "Trident"
+    "Chrome": {
+		
+	},
+    "Firefox": {
+		
+	},
+    "Opera": {
+		
+	},
+    "Safari": {
+		
+	},
+    "MSIE": {
+		
+	},
+    "Trident": {
+		
+	}
   },
 	"fonts": {
 		"dummy": {
