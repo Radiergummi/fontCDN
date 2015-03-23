@@ -14,7 +14,7 @@ class Uri {
 
   public function parse(string $uri) {
     if($uri = filter_var($uri, FILTER_SANITIZE_URL)) {
-      // remove possible subfolder, trim the uri from slashes and explode the segments into an array.
+      // remove possible physical subfolder, trim the uri from slashes and explode the segments into an array.
       return explode('/', trim(str_replace(Config::get('app.relativepath'), '', $uri), '/'));
     }
   }
@@ -28,7 +28,7 @@ class Uri {
    */
   public function get(string $segment = null) {
     if (! empty($segment)) {
-      
+      return $this->segments[$segment];
     } else {
       return $this->current;
     }
