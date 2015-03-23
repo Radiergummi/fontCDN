@@ -4,9 +4,17 @@ class Uri {
   /**
    * holds the current uri
    * 
+   * @var string
+   */
+  private $current = '';
+
+  /**
+   * holds the named uri segments in an associative array
+   * @example array('segment_name' => 'segment_value');
+   * 
    * @var array
    */
-  private $current = array();
+  private $segments = array();
 
   public function __construct() {
     $this->current = parse($_SERVER['REQUEST_URI']);
@@ -14,8 +22,8 @@ class Uri {
 
   public function parse(string $uri) {
     if($uri = filter_var($uri, FILTER_SANITIZE_URL)) {
-      // remove possible physical subfolder, trim the uri from slashes and explode the segments into an array.
-      return explode('/', trim(str_replace(Config::get('app.relativepath'), '', $uri), '/'));
+      // remove possible physical subfolder and trim the uri from slashes.
+      return trim(str_replace(Config::get('app.relativepath'), '', $uri), '/'));
     }
   }
   
